@@ -11,5 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "vite": "^5.0.2"
+  },
+  "dependencies": {
+    "@gradio/client": "^0.8.2"
   }
 }
