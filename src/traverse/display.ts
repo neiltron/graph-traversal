@@ -22,6 +22,7 @@ let lastDraw: number = performance.now();
 let startDraw: number = performance.now();
 let raf: number | null = null
 let drawInterval = 10000 / 60;
+const circleSize: number = 10;
 
 const draw = () => {
   if (performance.now() - lastDraw > drawInterval) {
@@ -42,10 +43,12 @@ const drawGraph = () => {
   }
 
   ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas before drawing
+  ctx.fillStyle = 'rgb(2 6 23)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   for (let i = 0; i < nodes.length; i += 1) {
     const node = nodes[i];
-    drawCircle(node.x, node.y, 20, 'black');
+    drawCircle(node.x, node.y, circleSize / 2, 'rgb(24 24 27)');
   }
 
   for (let i = 0; i < edges.length; i += 1) {
@@ -56,7 +59,7 @@ const drawGraph = () => {
     ctx.beginPath();
     ctx.moveTo(startNode.x, startNode.y);
     ctx.lineTo(endNode.x, endNode.y);
-    ctx.strokeStyle = 'black';
+    ctx.strokeStyle = 'rgb(148 163 184)';
     ctx.lineWidth = 1;
     ctx.stroke();
   }
@@ -71,7 +74,7 @@ const drawGraph = () => {
 
     if (i < drawStep - 1) {
       ctx.lineTo(endNode.x, endNode.y);
-      ctx.strokeStyle = '#000';
+      ctx.strokeStyle = 'rgb(203 213 225)';
     } else {
       const progress = (performance.now() - lastDraw) / drawInterval;
 
@@ -79,16 +82,17 @@ const drawGraph = () => {
       // ctx.lineTo(endX, endY);
       ctx.lineTo(
         startNode.x + progress * (endNode.x - startNode.x),
-        startNode.y + progress * (endNode.y - startNode.y));
-      ctx.strokeStyle = '#ff0';
+        startNode.y + progress * (endNode.y - startNode.y)
+      );
+      ctx.strokeStyle = 'rgb(253 224 71)';
     }
     ctx.lineWidth = 5;
     ctx.stroke();
   }
 
   // console.log(nodes, startNode);
-  drawCircle(nodes[startNode].x, nodes[startNode].y, 30, 'green');
-  drawCircle(nodes[endNode].x, nodes[endNode].y, 30, 'red');
+  drawCircle(nodes[startNode].x, nodes[startNode].y, 30, 'rgb(134 239 172)');
+  drawCircle(nodes[endNode].x, nodes[endNode].y, 30, 'rgb(254 202 202)');
 };
 
 const addNodes = () => {

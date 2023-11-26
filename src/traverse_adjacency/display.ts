@@ -133,7 +133,8 @@ const drawGraph = () => {
       // ctx.lineTo(endX, endY);
       ctx.lineTo(
         startNode.x + progress * (endNode.x - startNode.x),
-        startNode.y + progress * (endNode.y - startNode.y));
+        startNode.y + progress * (endNode.y - startNode.y)
+      );
       ctx.strokeStyle = 'rgb(253 224 71)';
     }
 
