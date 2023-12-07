@@ -1,6 +1,5 @@
 import { addEdges, addNode, edges, nodes, selectedEdges, findPath, clearEdges, clearNodes } from './graph';
 import type { edge, node } from './graph';
-import { generate } from './gradio';
 
 const canvas: HTMLCanvasElement = document.createElement('canvas');
 const ctx = canvas!.getContext('2d');
