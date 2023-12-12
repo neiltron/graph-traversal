@@ -16,11 +16,22 @@ export type Edge = {
 }
 
 export const nodes: { [key: number]: Node } = {};
+let minX, maxX, minY, maxY;
 graphData.nodes.forEach((node, i) => {
+    if (minX == null || node.x < minX) { minX = node.x; }
+    if (maxX == null || node.x > maxX) { maxX = node.x; }
+    if (minY == null || node.y < minY) { minY = node.y; }
+    if (maxY == null || node.y > maxY) { maxY = node.y; }
+});
+
+graphData.nodes.forEach((node, i) => {
+    const normalizedX = (node.x - minX) / (maxX - minX);
+    const normalizedY = (node.y - minY) / (maxY - minY);
+
     nodes[node.id] = {
         id: node.id,
-        x: ((Math.abs((Math.abs(node.x) - Math.abs(Math.floor(node.x)))) - .7) * 20) * 2000,
-        y: ((Math.abs((Math.abs(node.y) - Math.abs(Math.floor(node.y)))) - .81) * 20) * -2200 + 2450,
+        x: Math.abs(normalizedX),
+        y: Math.abs(normalizedY),
         street_count: node.street_count,
     };
 });

@@ -9,7 +9,7 @@ def convert_linestring(obj):
         return list(obj.coords)
     return obj
 
-location = "downtown norfolk, va"
+location = "barcelona, spain"
 graph = osmnx.graph_from_address(location)
 data = nx.node_link_data(graph)
 

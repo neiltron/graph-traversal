@@ -68,7 +68,7 @@ const downloadPng = (dataUrl: string, frame: number) => {
 const draw = async () => {
   lastRender = performance.now();
 
-  console.log('draw');
+  // console.log('draw');
   if (performance.now() - lastDraw > drawInterval) {
     lastDraw = performance.now();
     drawStep += speed;
@@ -101,7 +101,7 @@ const drawGraph = () => {
   for (let i = 0; i < keys.length; i += 1) {
     const node = nodes[keys[i]];
     // drawCircle(node.x, node.y, circleSize, 'rgb(148 163 184)');
-    drawCircle(node.x, node.y, circleSize / 2, 'rgb(100 116 139)');
+    drawCircle(node.x * canvas.width, node.y * canvas.height, circleSize / 1.5, 'rgb(100 116 139)');
   }
 
   for (let i = 0; i < edges.length; i += 1) {
@@ -110,9 +110,9 @@ const drawGraph = () => {
     const endNode = edge.target;
 
     ctx.beginPath();
-    ctx.moveTo(startNode.x, startNode.y);
+    ctx.moveTo(startNode.x * canvas.width, startNode.y * canvas.height);
 
-    ctx.lineTo(endNode.x, endNode.y);
+    ctx.lineTo(endNode.x * canvas.width, endNode.y * canvas.height);
     ctx.strokeStyle = 'rgb(212 212 216)';
     ctx.lineWidth = lineWidth * .5;
     ctx.lineCap = 'round';
@@ -140,24 +140,24 @@ const drawGraph = () => {
   //   ctx.stroke();
   // }
 
-  const pathKeys = Object.keys(selectedPath);
-  for (let i = 0; i < pathKeys.length; i += 1) {
-    const edge = selectedPath[pathKeys[i]];
-    const startNode: Node = nodes[edge[0]];
-    const endNode: Node = nodes[edge[1]];
+  // const pathKeys = Object.keys(selectedPath);
+  // for (let i = 0; i < pathKeys.length; i += 1) {
+  //   const edge = selectedPath[pathKeys[i]];
+  //   const startNode: Node = nodes[edge[0]];
+  //   const endNode: Node = nodes[edge[1]];
 
-    ctx.beginPath();
-    ctx.moveTo(startNode.x, startNode.y);
+  //   ctx.beginPath();
+  //   ctx.moveTo(startNode.x, startNode.y);
 
-    ctx.lineTo(endNode.x, endNode.y);
-    ctx.strokeStyle = 'rgb(251 191 36)';
+  //   ctx.lineTo(endNode.x, endNode.y);
+  //   ctx.strokeStyle = 'rgb(251 191 36)';
 
-    ctx.lineWidth = lineWidth * 1.2;
-    ctx.stroke();
-  }
+  //   ctx.lineWidth = lineWidth * 1.2;
+  //   ctx.stroke();
+  // }
 
-  drawCircle(startNode?.x, startNode?.y, circleSize * 2, 'rgb(34 197 94)');
-  drawCircle(endNode?.x, endNode?.y, circleSize * 2, 'rgb(239 68 68)');
+  // drawCircle(startNode?.x, startNode?.y, circleSize * 2, 'rgb(34 197 94)');
+  // drawCircle(endNode?.x, endNode?.y, circleSize * 2, 'rgb(239 68 68)');
 };
 
 let startNode: Node | null = null;
