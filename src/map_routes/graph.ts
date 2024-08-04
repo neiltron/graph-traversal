@@ -1,13 +1,13 @@
-import { adjacency, edges, nodes } from './map-data';
-import type { Node, Edge } from './map-data';
+import { adjacency, edges, nodes } from "./map-data";
+import type { Node, Edge } from "./map-data";
 const graph = [];
 
 export { adjacency, edges, nodes };
 export type { Node, Edge };
 
-export type edge = { id: number, nodes: number[] };
-export type node = { id: number, x: number, y: number };
-export type position = { x: number, y: number };
+export type edge = { id: number; nodes: number[] };
+export type node = { id: number; x: number; y: number };
+export type position = { x: number; y: number };
 
 export const gridSize: number = 50;
 export const nodeCount: number = gridSize * gridSize;
@@ -35,7 +35,9 @@ export const findPath = (start: number, end: number): object => {
       for (let v of adjacency[u]) {
         if (!visited[v]) {
           visited[v] = true;
-          const edge = edges.find(edge => edge.source.id === u && edge.target.id === v);
+          const edge = edges.find(
+            (edge) => edge.source.id === u && edge.target.id === v,
+          );
 
           if (edge != null) {
             selectedEdges.push(edge);
@@ -62,7 +64,7 @@ export const findPath = (start: number, end: number): object => {
   }
 
   return path;
-}
+};
 
 export const findNearestNode = (pos: position): Node | null => {
   const { x, y } = pos;
@@ -82,4 +84,4 @@ export const findNearestNode = (pos: position): Node | null => {
 
   // console.log(nearestNode, nearestDistance);
   return nearestNode;
-}
+};
